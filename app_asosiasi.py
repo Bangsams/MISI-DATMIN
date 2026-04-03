@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
+import gspread
+from google.oauth2.service_account import Credentials
 from datetime import datetime
 from mlxtend.frequent_patterns import apriori, association_rules
 import plotly.express as px
@@ -112,9 +114,61 @@ hr { border-color: #1e2540 !important; }
 # ─────────────────────────────────────────────
 # CONSTANTS
 # ─────────────────────────────────────────────
-CSV_PATH = "penjualan.csv"
 ADMIN_USER = "datmin"
 ADMIN_PASS = "datmin123"
+
+# ─────────────────────────────────────────────
+# GOOGLE SHEETS HELPERS
+# ─────────────────────────────────────────────
+SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive",
+]
+
+@st.cache_resource
+def get_worksheet():
+    """Koneksi ke Google Sheet — di-cache agar tidak reconnect tiap rerun."""
+    creds = Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"], scopes=SCOPES
+    )
+    client = gspread.authorize(creds)
+    sh     = client.open(st.secrets["google_sheets"]["sheet_name"])
+    ws     = sh.sheet1
+    # Buat header jika sheet masih kosong
+    if ws.row_count == 0 or ws.cell(1, 1).value != "transaksi_id":
+        ws.clear()
+        ws.append_row(["transaksi_id", "tanggal"] + ["Kopi","Gula","Susu","Roti","Mentega"])
+    return ws
+
+def load_sales() -> pd.DataFrame:
+    """Baca semua baris dari Google Sheet sebagai DataFrame."""
+    try:
+        ws   = get_worksheet()
+        data = ws.get_all_records()
+        if not data:
+            return pd.DataFrame(columns=["transaksi_id", "tanggal"] + ["Kopi","Gula","Susu","Roti","Mentega"])
+        df = pd.DataFrame(data)
+        for item in ["Kopi","Gula","Susu","Roti","Mentega"]:
+            if item in df.columns:
+                df[item] = pd.to_numeric(df[item], errors="coerce").fillna(0).astype(int)
+        return df
+    except Exception as e:
+        st.error(f"❌ Gagal membaca Google Sheet: {e}")
+        return pd.DataFrame(columns=["transaksi_id", "tanggal"] + ["Kopi","Gula","Susu","Roti","Mentega"])
+
+def save_transaction(keranjang: dict) -> int:
+    """Tambah satu baris transaksi baru ke Google Sheet."""
+    try:
+        ws      = get_worksheet()
+        records = ws.get_all_records()
+        tid     = len(records) + 1
+        tanggal = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        row     = [tid, tanggal] + [keranjang.get(item, 0) for item in ["Kopi","Gula","Susu","Roti","Mentega"]]
+        ws.append_row(row, value_input_option="USER_ENTERED")
+        return tid
+    except Exception as e:
+        st.error(f"❌ Gagal menyimpan transaksi: {e}")
+        return -1
 
 katalog = {
     "Kopi":    {"harga": 25000, "harga_str": "Rp 25.000", "emoji": "☕", "desc": "Kopi Arabika Premium",  "img": "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=400&q=80"},
@@ -125,31 +179,6 @@ katalog = {
 }
 ITEM_NAMES = list(katalog.keys())
 COLORS = ["#a78bfa", "#7c3aed", "#34d399", "#fbbf24", "#f87171"]
-
-# ─────────────────────────────────────────────
-# CSV HELPERS  (kuantitas nyata, bukan one-hot)
-# ─────────────────────────────────────────────
-def load_sales() -> pd.DataFrame:
-    if os.path.exists(CSV_PATH):
-        df = pd.read_csv(CSV_PATH)
-        if "tanggal" not in df.columns:
-            df.insert(1, "tanggal", "")
-        for item in ITEM_NAMES:
-            if item not in df.columns:
-                df[item] = 0
-        return df
-    return pd.DataFrame(columns=["transaksi_id", "tanggal"] + ITEM_NAMES)
-
-def save_transaction(keranjang: dict) -> int:
-    """Simpan transaksi dengan kuantitas nyata per item."""
-    df = load_sales()
-    tid = len(df) + 1
-    row = {"transaksi_id": tid, "tanggal": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-    for item in ITEM_NAMES:
-        row[item] = keranjang.get(item, 0)
-    df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
-    df.to_csv(CSV_PATH, index=False)
-    return tid
 
 # ─────────────────────────────────────────────
 # APRIORI  (konversi qty → boolean untuk ARM)
@@ -633,7 +662,9 @@ with tab_admin:
             with vc4:
                 bool_df = df_admin[item_cols].gt(0).astype(int)
                 cooc    = bool_df.T.dot(bool_df)
-                np.fill_diagonal(cooc.values, 0)
+                cooc_arr = cooc.values.copy()
+                np.fill_diagonal(cooc_arr, 0)
+                cooc = pd.DataFrame(cooc_arr, index=cooc.index, columns=cooc.columns)
                 fig4 = go.Figure(go.Heatmap(
                     z=cooc.values,
                     x=cooc.columns.tolist(), y=cooc.index.tolist(),
@@ -700,7 +731,9 @@ with tab_admin:
                     )
 
                 cooc_c = cooc.copy()
-                np.fill_diagonal(cooc_c.values, 0)
+                cooc_c_arr = cooc_c.values.copy()
+                np.fill_diagonal(cooc_c_arr, 0)
+                cooc_c = pd.DataFrame(cooc_c_arr, index=cooc_c.index, columns=cooc_c.columns)
                 if cooc_c.values.max() > 0:
                     mi = np.unravel_index(cooc_c.values.argmax(), cooc_c.shape)
                     a_it = cooc_c.index[mi[0]]
@@ -788,7 +821,7 @@ with tab_admin:
             dc, di = st.columns([1, 3])
             with di:
                 st.caption(
-                    f"📄 File: `{CSV_PATH}` | {len(df_admin)} transaksi "
+                    f"📄 Google Sheets | {len(df_admin)} transaksi "
                     f"| Format: kuantitas nyata per produk"
                 )
             with dc:
