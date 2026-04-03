@@ -3,4 +3,6 @@ pandas
 numpy
 mlxtend
 plotly
+gspread
+google-auth
 openpyxl
