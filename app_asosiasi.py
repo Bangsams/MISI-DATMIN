@@ -175,7 +175,7 @@ katalog = {
     "Gula":    {"harga": 15000, "harga_str": "Rp 15.000", "emoji": "🍬", "desc": "Gula Pasir Murni",      "img": "https://siopen.balangankab.go.id/storage/merchant/products/2025/02/10/f86ef4a74aa4bbc97844ea4390efa05b.jpg"},
     "Susu":    {"harga": 20000, "harga_str": "Rp 20.000", "emoji": "🥛", "desc": "Susu Segar Full Cream", "img": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80"},
     "Roti":    {"harga": 18000, "harga_str": "Rp 18.000", "emoji": "🍞", "desc": "Roti Gandum Utuh",      "img": "https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=400&q=80"},
-    "Mentega": {"harga": 12000, "harga_str": "Rp 12.000", "emoji": "🧈", "desc": "Mentega Sapi Asli",     "img": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=400&q=80"},
+    "Mentega": {"harga": 12000, "harga_str": "Rp 12.000", "emoji": "🧈", "desc": "Mentega Sapi Asli",     "img": "https://allofresh.id/blog/wp-content/uploads/2024/01/merk-mentega-1.jpg"},
 }
 ITEM_NAMES = list(katalog.keys())
 COLORS = ["#a78bfa", "#7c3aed", "#34d399", "#fbbf24", "#f87171"]
