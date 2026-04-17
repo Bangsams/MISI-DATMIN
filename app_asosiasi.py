@@ -298,25 +298,18 @@ def show_recommendation_popup(added_item: str, rec_rows: list):
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
-import base64
-
-# Letakkan ini di bagian atas file atau sebelum header
-with open("images.png", "rb") as f:
-    logo_b64 = base64.b64encode(f.read()).decode("utf-8")
-logo_data_url = f"data:image/png;base64,{logo_b64}"
-
-st.markdown(f"""
+st.markdown("""
 <div style="padding:2rem 0 1rem; text-align:center;">
-    <div style="display:flex; align-items:center; justify-content:center; gap:0.85rem; margin-bottom:0.4rem;">
-        <img src="{logo_data_url}"
-             style="height:60px; width:auto; object-fit:contain;" />
-        <h1 style="font-family:'Sora',sans-serif; font-size:2.4rem; font-weight:800;
-                   background:linear-gradient(135deg,#e8eaf0 30%,#29ABE2);
-                   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-                   margin:0; letter-spacing:-0.02em;">
-            DataMart
-        </h1>
+    <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.2em; color:#29ABE2;
+                text-transform:uppercase; margin-bottom:0.5rem;">
+        Laboratorium Data Mining
     </div>
+    <h1 style="font-family:'Sora',sans-serif; font-size:2.4rem; font-weight:800;
+               background:linear-gradient(135deg,#e8eaf0 30%,#29ABE2);
+               -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+               margin:0; letter-spacing:-0.02em;">
+        🛒 DataMart
+    </h1>
     <p style="color:#6B7280; font-size:0.88rem; margin-top:0.4rem;">
         Toko Cerdas Berbasis
         <span style="color:#29ABE2; font-weight:600;">Association Rule Mining</span>
