@@ -20,51 +20,57 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────
-# CSS
+# CSS  — warna disesuaikan logo UII Data Mining
+# Palet: biru  #29ABE2 · oranye #F7A01D · abu #6B7280
+# Background utama: #0d1c2e (biru tua gelap)
+# Surface card  : #112236
+# Border        : #1e3a52
+# Accent biru   : #29ABE2
+# Accent oranye : #F7A01D
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 *, *::before, *::after { box-sizing: border-box; }
 html, body, [data-testid="stAppViewContainer"] {
-    background: #0a0e1a !important;
+    background: #0d1c2e !important;
     font-family: 'Sora', sans-serif !important;
     color: #e8eaf0 !important;
 }
 [data-testid="stHeader"] { background: transparent !important; }
-[data-testid="stSidebar"] { background: #0d1120 !important; border-right: 1px solid #1e2540; }
+[data-testid="stSidebar"] { background: #0a1628 !important; border-right: 1px solid #1e3a52; }
 #MainMenu, footer, header { visibility: hidden; }
 [data-testid="stDecoration"] { display: none; }
 
 /* Tabs */
-[data-testid="stTabs"] > div:first-child { border-bottom: 2px solid #1e2540; gap: 0; }
+[data-testid="stTabs"] > div:first-child { border-bottom: 2px solid #1e3a52; gap: 0; }
 [data-testid="stTabs"] button {
     font-family: 'Sora', sans-serif !important; font-weight: 600 !important;
-    font-size: 0.85rem !important; color: #6b7699 !important;
+    font-size: 0.85rem !important; color: #6B7280 !important;
     padding: 0.75rem 1.5rem !important; border-radius: 0 !important;
     border-bottom: 2px solid transparent !important; margin-bottom: -2px !important;
 }
-[data-testid="stTabs"] button:hover { color: #a78bfa !important; }
+[data-testid="stTabs"] button:hover { color: #29ABE2 !important; }
 [data-testid="stTabs"] button[aria-selected="true"] {
-    color: #a78bfa !important; border-bottom: 2px solid #a78bfa !important;
+    color: #29ABE2 !important; border-bottom: 2px solid #29ABE2 !important;
     background: transparent !important;
 }
 
-/* Buttons — default purple */
+/* Buttons — biru */
 div.stButton > button {
     font-family: 'Sora', sans-serif !important; font-weight: 600 !important;
     font-size: 0.8rem !important;
-    background: linear-gradient(135deg, #7c3aed, #a78bfa) !important;
+    background: linear-gradient(135deg, #1a7fad, #29ABE2) !important;
     color: white !important; border: none !important; border-radius: 8px !important;
     padding: 0.5rem 1rem !important; cursor: pointer !important;
     transition: all 0.2s !important; width: 100% !important;
 }
 div.stButton > button:hover {
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 20px rgba(167,139,250,0.4) !important;
+    box-shadow: 0 4px 20px rgba(41,171,226,0.4) !important;
 }
 
-/* Quantity ± buttons — compact, pastikan tidak hilang */
+/* Quantity ± buttons */
 div[data-testid="column"] div.stButton > button[kind="secondary"],
 div[data-testid="column"] div.stButton > button {
     font-size: 1rem !important;
@@ -82,30 +88,30 @@ div[data-testid="column"] div.stButton > button {
 [data-testid="stSelectbox"] > div > div,
 [data-testid="stTextInput"] input,
 input[type="password"] {
-    background: #111827 !important; border: 1px solid #1e2540 !important;
+    background: #112236 !important; border: 1px solid #1e3a52 !important;
     border-radius: 8px !important; color: #e8eaf0 !important;
     font-family: 'Sora', sans-serif !important;
 }
 
 /* Metrics */
 [data-testid="metric-container"] {
-    background: #111827 !important; border: 1px solid #1e2540 !important;
+    background: #112236 !important; border: 1px solid #1e3a52 !important;
     border-radius: 12px !important; padding: 1rem !important;
 }
 [data-testid="stMetricValue"] {
     font-family: 'JetBrains Mono', monospace !important;
-    font-size: 1.6rem !important; color: #a78bfa !important;
+    font-size: 1.6rem !important; color: #29ABE2 !important;
 }
-[data-testid="stMetricLabel"] { color: #6b7699 !important; font-size: 0.8rem !important; }
-[data-testid="stDataFrame"] { border: 1px solid #1e2540 !important; border-radius: 10px !important; overflow: hidden !important; }
-hr { border-color: #1e2540 !important; }
+[data-testid="stMetricLabel"] { color: #6B7280 !important; font-size: 0.8rem !important; }
+[data-testid="stDataFrame"] { border: 1px solid #1e3a52 !important; border-radius: 10px !important; overflow: hidden !important; }
+hr { border-color: #1e3a52 !important; }
 [data-testid="stAlert"] { border-radius: 10px !important; font-family: 'Sora', sans-serif !important; }
-[data-testid="stExpander"] { background: #111827 !important; border: 1px solid #1e2540 !important; border-radius: 10px !important; }
-[data-testid="stCaptionContainer"] { color: #6b7699 !important; font-size: 0.75rem !important; }
+[data-testid="stExpander"] { background: #112236 !important; border: 1px solid #1e3a52 !important; border-radius: 10px !important; }
+[data-testid="stCaptionContainer"] { color: #6B7280 !important; font-size: 0.75rem !important; }
 
 /* Dialog / modal */
 [data-testid="stDialog"] > div {
-    background: #111827 !important; border: 1px solid #1e2540 !important;
+    background: #112236 !important; border: 1px solid #1e3a52 !important;
     border-radius: 16px !important;
 }
 </style>
@@ -178,16 +184,15 @@ katalog = {
     "Mentega": {"harga": 12000, "harga_str": "Rp 12.000", "emoji": "🧈", "desc": "Mentega Sapi Asli",     "img": "https://allofresh.id/blog/wp-content/uploads/2024/01/merk-mentega-1.jpg"},
 }
 ITEM_NAMES = list(katalog.keys())
-COLORS = ["#a78bfa", "#7c3aed", "#34d399", "#fbbf24", "#f87171"]
+COLORS = ["#29ABE2", "#1a7fad", "#F7A01D", "#f0c060", "#6B7280"]
 
 # ─────────────────────────────────────────────
-# APRIORI  (konversi qty → boolean untuk ARM)
+# APRIORI
 # ─────────────────────────────────────────────
 def run_apriori(df_sales: pd.DataFrame, min_sup: float, min_conf: float, min_lift: float):
     items = [c for c in ITEM_NAMES if c in df_sales.columns]
     if len(df_sales) < 3:
         return None, None
-    # konversi kuantitas ke boolean: qty > 0 → True
     matrix = df_sales[items].gt(0)
     try:
         freq = apriori(matrix, min_support=min_sup, use_colnames=True)
@@ -200,28 +205,20 @@ def run_apriori(df_sales: pd.DataFrame, min_sup: float, min_conf: float, min_lif
         return None, None
 
 # ─────────────────────────────────────────────
-# REKOMENDASI  — selalu return list
+# REKOMENDASI
 # ─────────────────────────────────────────────
 def get_recommendations(items_in_cart: list, rules: pd.DataFrame) -> list:
-    """
-    Ambil rekomendasi berdasarkan semua item di keranjang.
-    Selalu mengembalikan list of (item_name, rule_row).
-    List kosong ([]) berarti tidak ada rekomendasi.
-    """
     if rules is None or rules.empty or not items_in_cart:
         return []
     cart_set = set(items_in_cart)
-    # aturan yang antecedent-nya beririsan dengan keranjang
     mask = rules["antecedents"].apply(lambda x: bool(x & cart_set))
     recs = rules[mask].copy()
     if recs.empty:
         return []
-    # buang consequent yang sudah ada di keranjang
     recs = recs[recs["consequents"].apply(lambda x: not bool(x & cart_set))]
     if recs.empty:
         return []
     recs = recs.sort_values("confidence", ascending=False)
-    # collapse: tiap item rekomendasi hanya muncul sekali (confidence tertinggi)
     seen: dict = {}
     rows: list = []
     for _, rule_row in recs.iterrows():
@@ -229,13 +226,13 @@ def get_recommendations(items_in_cart: list, rules: pd.DataFrame) -> list:
             if item not in seen:
                 seen[item] = rule_row
                 rows.append((item, rule_row))
-    return rows  # list of (item_name, rule_Series)
+    return rows
 
 # ─────────────────────────────────────────────
 # SESSION STATE
 # ─────────────────────────────────────────────
 defaults = {
-    "keranjang": {},        # {item: qty}
+    "keranjang": {},
     "checkout_done": False,
     "last_tid": None,
     "admin_logged": False,
@@ -247,15 +244,15 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 # ─────────────────────────────────────────────
-# POPUP REKOMENDASI  (st.dialog)
+# POPUP REKOMENDASI
 # ─────────────────────────────────────────────
 @st.dialog("🔥 Sering Dibeli Bersamaan", width="large")
 def show_recommendation_popup(added_item: str, rec_rows: list):
     st.markdown(f"""
     <div style="margin-bottom:1rem;">
-        <span style="font-size:0.85rem; color:#6b7699;">
+        <span style="font-size:0.85rem; color:#6B7280;">
             Pelanggan yang membeli
-            <b style='color:#a78bfa'>{katalog[added_item]['emoji']} {added_item}</b>
+            <b style='color:#29ABE2'>{katalog[added_item]['emoji']} {added_item}</b>
             juga sering membeli:
         </span>
     </div>
@@ -266,7 +263,7 @@ def show_recommendation_popup(added_item: str, rec_rows: list):
         with cols[i]:
             conf_pct = row["confidence"] * 100
             st.markdown(f"""
-            <div style="background:#0d1120; border:1px solid #1e2540; border-radius:12px;
+            <div style="background:#0a1628; border:1px solid #1e3a52; border-radius:12px;
                         overflow:hidden; text-align:center;">
                 <img src="{katalog[iname]['img']}"
                      style="width:100%; height:100px; object-fit:cover;" />
@@ -275,12 +272,12 @@ def show_recommendation_popup(added_item: str, rec_rows: list):
                     <div style="font-weight:700; font-size:0.88rem; color:#e8eaf0; margin:0.15rem 0;">
                         {iname}
                     </div>
-                    <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#34d399;">
+                    <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#F7A01D;">
                         {katalog[iname]['harga_str']}
                     </div>
-                    <div style="font-size:0.7rem; color:#6b7699; margin-top:0.3rem;">
+                    <div style="font-size:0.7rem; color:#6B7280; margin-top:0.3rem;">
                         Kecocokan
-                        <span style="color:#a78bfa; font-weight:700;">{conf_pct:.0f}%</span>
+                        <span style="color:#29ABE2; font-weight:700;">{conf_pct:.0f}%</span>
                     </div>
                 </div>
             </div>
@@ -292,7 +289,7 @@ def show_recommendation_popup(added_item: str, rec_rows: list):
                 st.session_state.show_popup = False
                 st.rerun()
 
-    st.markdown("<div style='margin-top:1rem'>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top:1rem;'>", unsafe_allow_html=True)
     if st.button("Tutup", key="popup_close"):
         st.session_state.show_popup = False
         st.rerun()
@@ -303,19 +300,19 @@ def show_recommendation_popup(added_item: str, rec_rows: list):
 # ─────────────────────────────────────────────
 st.markdown("""
 <div style="padding:2rem 0 1rem; text-align:center;">
-    <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.2em; color:#a78bfa;
+    <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.2em; color:#29ABE2;
                 text-transform:uppercase; margin-bottom:0.5rem;">
         Laboratorium Data Mining
     </div>
     <h1 style="font-family:'Sora',sans-serif; font-size:2.4rem; font-weight:800;
-               background:linear-gradient(135deg,#e8eaf0 30%,#a78bfa);
+               background:linear-gradient(135deg,#e8eaf0 30%,#29ABE2);
                -webkit-background-clip:text; -webkit-text-fill-color:transparent;
                margin:0; letter-spacing:-0.02em;">
         🛒 DataMart
     </h1>
-    <p style="color:#6b7699; font-size:0.88rem; margin-top:0.4rem;">
+    <p style="color:#6B7280; font-size:0.88rem; margin-top:0.4rem;">
         Toko Cerdas Berbasis
-        <span style="color:#a78bfa; font-weight:600;">Association Rule Mining</span>
+        <span style="color:#29ABE2; font-weight:600;">Association Rule Mining</span>
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -333,7 +330,6 @@ with tab_store:
         _, rules_live = run_apriori(df_s, min_sup=0.2, min_conf=0.5, min_lift=1.0)
         cart_items = list(st.session_state.keranjang.keys())
         rec_rows = get_recommendations(cart_items, rules_live)
-        # rec_rows selalu list — aman dievaluasi sebagai boolean
         if rec_rows:
             show_recommendation_popup(st.session_state.popup_item, rec_rows)
         else:
@@ -345,8 +341,8 @@ with tab_store:
         <h3 style="font-size:1.05rem; font-weight:700; color:#e8eaf0; margin:0;">
             Produk Pilihan Hari Ini
         </h3>
-        <p style="color:#6b7699; font-size:0.78rem; margin-top:0.2rem;">
-            Klik <b style='color:#a78bfa'>+ Keranjang</b> untuk menambahkan produk
+        <p style="color:#6B7280; font-size:0.78rem; margin-top:0.2rem;">
+            Klik <b style='color:#29ABE2'>+ Keranjang</b> untuk menambahkan produk
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -355,10 +351,12 @@ with tab_store:
     for idx, (nama, info) in enumerate(katalog.items()):
         with prod_cols[idx]:
             in_cart = nama in st.session_state.keranjang
-            border = "#a78bfa" if in_cart else "#1e2540"
-            bg     = "#1a1040" if in_cart else "#111827"
-            badge  = (
-                f'<div style="font-size:0.68rem; color:#a78bfa; margin-top:0.2rem;">'
+            border  = "#29ABE2" if in_cart else "#1e3a52"
+            bg      = "#0e2a40" if in_cart else "#112236"
+
+            # Badge qty — dirender dalam satu blok HTML yang lengkap dan tertutup
+            badge_html = (
+                f'<div style="font-size:0.68rem; color:#29ABE2; margin-top:0.2rem;">'
                 f'✓ ×{st.session_state.keranjang[nama]}</div>'
             ) if in_cart else ""
 
@@ -368,15 +366,14 @@ with tab_store:
                 <img src="{info['img']}"
                      style="width:100%; height:125px; object-fit:cover;" />
                 <div style="padding:0.6rem;">
-                    <div style="font-size:0.68rem; color:#a78bfa; font-weight:600;
+                    <div style="font-size:0.68rem; color:#29ABE2; font-weight:600;
                                 margin-bottom:0.12rem;">
                         {info['emoji']} {info['desc']}
                     </div>
                     <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem;
-                                font-weight:700; color:#34d399;">
+                                font-weight:700; color:#F7A01D;">
                         {info['harga_str']}
-                    </div>
-                    {badge}
+                    </div>{badge_html}
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -404,8 +401,8 @@ with tab_store:
 
         if not st.session_state.keranjang:
             st.markdown("""
-            <div style="background:#111827; border:1px dashed #1e2540; border-radius:12px;
-                        padding:2rem; text-align:center; color:#6b7699;">
+            <div style="background:#112236; border:1px dashed #1e3a52; border-radius:12px;
+                        padding:2rem; text-align:center; color:#6B7280;">
                 <div style="font-size:2rem; margin-bottom:0.4rem;">🛒</div>
                 <div style="font-size:0.82rem;">Keranjang masih kosong</div>
             </div>
@@ -421,43 +418,37 @@ with tab_store:
                 ci, cm, cq, cx = st.columns([3, 1, 1, 1])
                 with ci:
                     st.markdown(f"""
-                    <div style="padding:0.5rem; background:#111827; border:1px solid #1e2540;
+                    <div style="padding:0.5rem; background:#112236; border:1px solid #1e3a52;
                                 border-radius:8px; margin-bottom:0.3rem;">
                         <div style="font-size:0.83rem; font-weight:600; color:#e8eaf0;">
                             {katalog[item]['emoji']} {item}
                         </div>
-                        <div style="font-size:0.7rem; font-family:'JetBrains Mono'; color:#34d399;">
+                        <div style="font-size:0.7rem; font-family:'JetBrains Mono'; color:#F7A01D;">
                             {qty} × Rp {harga:,} = <b>Rp {subtotal:,}</b>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
                 with cm:
-                    st.markdown('<div style="margin-top:0.1rem">', unsafe_allow_html=True)
                     if st.button("−", key=f"dec_{item}"):
                         if st.session_state.keranjang[item] > 1:
                             st.session_state.keranjang[item] -= 1
                         else:
                             del st.session_state.keranjang[item]
                         st.rerun()
-                    st.markdown('</div>', unsafe_allow_html=True)
                 with cq:
-                    st.markdown('<div style="margin-top:0.1rem">', unsafe_allow_html=True)
                     if st.button("+", key=f"inc_{item}"):
                         st.session_state.keranjang[item] += 1
                         st.rerun()
-                    st.markdown('</div>', unsafe_allow_html=True)
                 with cx:
-                    st.markdown('<div style="margin-top:0.1rem">', unsafe_allow_html=True)
                     if st.button("✕", key=f"rm_{item}"):
                         del st.session_state.keranjang[item]
                         st.rerun()
-                    st.markdown('</div>', unsafe_allow_html=True)
 
             st.markdown(f"""
-            <div style="background:#1a1040; border:1px solid #a78bfa; border-radius:10px;
+            <div style="background:#0e2a40; border:1px solid #29ABE2; border-radius:10px;
                         padding:0.7rem 1rem; margin:0.6rem 0;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="color:#a78bfa; font-weight:600; font-size:0.83rem;">
+                    <span style="color:#29ABE2; font-weight:600; font-size:0.83rem;">
                         Total ({sum(st.session_state.keranjang.values())} item)
                     </span>
                     <span style="font-family:'JetBrains Mono'; font-size:1.05rem;
@@ -492,9 +483,9 @@ with tab_store:
 
     with col_info:
         st.markdown("""
-        <div style="background:#111827; border:1px solid #1e2540; border-radius:14px;
+        <div style="background:#112236; border:1px solid #1e3a52; border-radius:14px;
                     padding:1.5rem; margin-top:0.5rem;">
-            <div style="font-size:0.75rem; font-weight:700; color:#a78bfa;
+            <div style="font-size:0.75rem; font-weight:700; color:#29ABE2;
                         text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">
                 💡 Cara Belanja
             </div>
@@ -511,7 +502,7 @@ with tab_store:
         for icon, tip in tips:
             st.markdown(f"""
             <div style="display:flex; gap:0.75rem; padding:0.6rem 0;
-                        border-bottom:1px solid #1e2540; align-items:flex-start;">
+                        border-bottom:1px solid #1e3a52; align-items:flex-start;">
                 <span style="font-size:1.2rem; flex-shrink:0;">{icon}</span>
                 <span style="font-size:0.82rem; color:#c4c8d8; line-height:1.5;">{tip}</span>
             </div>
@@ -530,7 +521,7 @@ with tab_admin:
             <h2 style="font-size:1.35rem; font-weight:700; color:#e8eaf0; margin-bottom:0.4rem;">
                 Akses Admin
             </h2>
-            <p style="color:#6b7699; font-size:0.82rem; margin-bottom:1.5rem;">
+            <p style="color:#6B7280; font-size:0.82rem; margin-bottom:1.5rem;">
                 Masukkan kredensial untuk masuk ke dashboard
             </p>
         </div>
@@ -556,7 +547,7 @@ with tab_admin:
             <h2 style="font-size:1.35rem; font-weight:800; color:#e8eaf0; margin:1rem 0 0.2rem;">
                 📊 Dashboard Admin — DataMart
             </h2>
-            <p style="color:#6b7699; font-size:0.78rem; margin-bottom:1.2rem;">
+            <p style="color:#6B7280; font-size:0.78rem; margin-bottom:1.2rem;">
                 Analisis penjualan &amp; Association Rule Mining
             </p>
             """, unsafe_allow_html=True)
@@ -613,8 +604,8 @@ with tab_admin:
                     title=dict(text="Total Unit Terjual per Produk",
                                font=dict(color="#e8eaf0", size=13)),
                     paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#6b7699", family="Sora"),
-                    xaxis=dict(gridcolor="#1e2540"), yaxis=dict(gridcolor="#1e2540"),
+                    font=dict(color="#6B7280", family="Sora"),
+                    xaxis=dict(gridcolor="#1e3a52"), yaxis=dict(gridcolor="#1e3a52"),
                     margin=dict(t=45, b=20, l=10, r=10), height=300
                 )
                 st.plotly_chart(fig1, use_container_width=True)
@@ -626,14 +617,14 @@ with tab_admin:
                 }
                 fig2 = go.Figure(go.Pie(
                     labels=list(revs.keys()), values=list(revs.values()), hole=0.5,
-                    marker=dict(colors=COLORS, line=dict(color="#0a0e1a", width=2)),
+                    marker=dict(colors=COLORS, line=dict(color="#0d1c2e", width=2)),
                     textfont=dict(color="#e8eaf0", size=11)
                 ))
                 fig2.update_layout(
                     title=dict(text="Distribusi Estimasi Revenue",
                                font=dict(color="#e8eaf0", size=13)),
                     paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#6b7699", family="Sora"),
+                    font=dict(color="#6B7280", family="Sora"),
                     legend=dict(font=dict(color="#e8eaf0")),
                     margin=dict(t=45, b=10, l=10, r=10), height=300
                 )
@@ -645,15 +636,15 @@ with tab_admin:
                 basket_sizes = df_admin[item_cols].gt(0).sum(axis=1)
                 fig3 = px.histogram(
                     basket_sizes, nbins=6,
-                    color_discrete_sequence=["#a78bfa"],
+                    color_discrete_sequence=["#29ABE2"],
                     labels={"value": "Jenis Item", "count": "Frekuensi"}
                 )
                 fig3.update_layout(
                     title=dict(text="Distribusi Basket Size (Jenis Item)",
                                font=dict(color="#e8eaf0", size=13)),
                     paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#6b7699", family="Sora"),
-                    xaxis=dict(gridcolor="#1e2540"), yaxis=dict(gridcolor="#1e2540"),
+                    font=dict(color="#6B7280", family="Sora"),
+                    xaxis=dict(gridcolor="#1e3a52"), yaxis=dict(gridcolor="#1e3a52"),
                     showlegend=False,
                     margin=dict(t=45, b=20, l=10, r=10), height=300
                 )
@@ -668,7 +659,7 @@ with tab_admin:
                 fig4 = go.Figure(go.Heatmap(
                     z=cooc.values,
                     x=cooc.columns.tolist(), y=cooc.index.tolist(),
-                    colorscale=[[0,"#0a0e1a"],[0.5,"#7c3aed"],[1,"#a78bfa"]],
+                    colorscale=[[0,"#0d1c2e"],[0.5,"#1a7fad"],[1,"#29ABE2"]],
                     text=cooc.values, texttemplate="%{text}",
                     textfont=dict(color="white", size=12), showscale=False
                 ))
@@ -676,7 +667,7 @@ with tab_admin:
                     title=dict(text="Co-occurrence Produk",
                                font=dict(color="#e8eaf0", size=13)),
                     paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#6b7699", family="Sora"),
+                    font=dict(color="#6B7280", family="Sora"),
                     margin=dict(t=45, b=20, l=10, r=10), height=300
                 )
                 st.plotly_chart(fig4, use_container_width=True)
@@ -699,9 +690,9 @@ with tab_admin:
 
             with sd2:
                 st.markdown("""
-                <div style="background:#111827; border:1px solid #1e2540;
+                <div style="background:#112236; border:1px solid #1e3a52;
                             border-radius:12px; padding:1.2rem;">
-                    <div style="font-size:0.75rem; font-weight:700; color:#a78bfa;
+                    <div style="font-size:0.75rem; font-weight:700; color:#29ABE2;
                                 margin-bottom:0.75rem; text-transform:uppercase;
                                 letter-spacing:0.1em;">
                         💡 Insight Bisnis Otomatis
@@ -745,7 +736,7 @@ with tab_admin:
 
                 for ins in insights:
                     st.markdown(
-                        f'<div style="padding:0.45rem 0; border-bottom:1px solid #1e2540; '
+                        f'<div style="padding:0.45rem 0; border-bottom:1px solid #1e3a52; '
                         f'font-size:0.8rem; color:#c4c8d8; line-height:1.5;">{ins}</div>',
                         unsafe_allow_html=True,
                     )
@@ -831,6 +822,6 @@ with tab_admin:
                     "penjualan.csv", "text/csv", key="dl_csv"
                 )
             st.dataframe(
-                df_admin.style.background_gradient(subset=item_cols, cmap="Purples"),
+                df_admin.style.background_gradient(subset=item_cols, cmap="Blues"),
                 use_container_width=True, hide_index=True
             )
