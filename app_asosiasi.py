@@ -172,7 +172,7 @@ def save_transaction(keranjang: dict) -> int:
 
 katalog = {
     "Kopi":    {"harga": 25000, "harga_str": "Rp 25.000", "emoji": "☕", "desc": "Kopi Arabika Premium",  "img": "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=400&q=80"},
-    "Gula":    {"harga": 15000, "harga_str": "Rp 15.000", "emoji": "🍬", "desc": "Gula Pasir Murni",      "img": "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=400&q=80"},
+    "Gula":    {"harga": 15000, "harga_str": "Rp 15.000", "emoji": "🍬", "desc": "Gula Pasir Murni",      "img": "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fsiopen.balangankab.go.id%2Fproducts%2Fgula-pasir-1z15ljlLfUe27RcbG4iL4&ved=0CBYQjRxqFwoTCJCYl7Xo9JMDFQAAAAAdAAAAABAG&opi=89978449"},
     "Susu":    {"harga": 20000, "harga_str": "Rp 20.000", "emoji": "🥛", "desc": "Susu Segar Full Cream", "img": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80"},
     "Roti":    {"harga": 18000, "harga_str": "Rp 18.000", "emoji": "🍞", "desc": "Roti Gandum Utuh",      "img": "https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=400&q=80"},
     "Mentega": {"harga": 12000, "harga_str": "Rp 12.000", "emoji": "🧈", "desc": "Mentega Sapi Asli",     "img": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=400&q=80"},
